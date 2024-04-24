@@ -103,8 +103,8 @@ def main():
 
     # 6, 15, 26
     GPIO.setup(6, GPIO.OUT)  # links
-    GPIO.setup(15, GPIO.OUT)  # rechts
-    GPIO.setup(26, GPIO.OUT)  # obenunten
+    GPIO.setup(15, GPIO.OUT)  # obenunten
+    GPIO.setup(26, GPIO.OUT)  # rechts
 
     p12 = GPIO.PWM(12, 100)  # links
     p13 = GPIO.PWM(13, 100)  # rechts
@@ -186,8 +186,8 @@ def main():
             # print("%s writeLeft %s writeRight %s writeUpDown" %(writeLeft,writeRight,writeUpDown))
 
             GPIO.output(6, dirMotorLeft)
-            GPIO.output(15, dirMotorRight)
-            GPIO.output(26, dirMotorUpDown)
+            GPIO.output(26, dirMotorRight)
+            GPIO.output(15, dirMotorUpDown)
 
             p12.start(writeLeft)
             p13.start(writeRight)
