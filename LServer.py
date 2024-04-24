@@ -96,6 +96,32 @@ def main():
     power_mgmt_1 = 0x6b
     power_mgmt_2 = 0x6c
 
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(12, GPIO.OUT)  # PWM 0
+    GPIO.setup(13, GPIO.OUT)  # PWM
+    GPIO.setup(16, GPIO.OUT)
+
+    # 6, 15, 26
+    GPIO.setup(6, GPIO.OUT)  # links
+    GPIO.setup(15, GPIO.OUT)  # rechts
+    GPIO.setup(26, GPIO.OUT)  # obenunten
+
+    p12 = GPIO.PWM(12, 100)  # links
+    p13 = GPIO.PWM(13, 100)  # rechts
+    p16 = GPIO.PWM(16, 100)  # hochrunter
+
+    motorLeft = 0
+    motorRight = 0
+    motorUpDown = 0
+    dirMotorLeft = 1  # 0 back 1 fw ,, 6,15,26
+    dirMotorRight = 1
+    dirMotorUpDown = 1
+    writeLeft = 0
+    writeRight = 0
+    writeUpDown = 0
+
+    step = 5
+
     
     print("Server is running...")
     # Aktivieren, um das Modul ansprechen zu koennen
@@ -115,32 +141,7 @@ def main():
 
             print(f"Connected by {addr}")
 
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(12, GPIO.OUT)  # PWM 0
-            GPIO.setup(13, GPIO.OUT)  # PWM
-            GPIO.setup(16, GPIO.OUT)
-
-            # 6, 15, 26
-            GPIO.setup(6, GPIO.OUT)  # links
-            GPIO.setup(15, GPIO.OUT)  # rechts
-            GPIO.setup(26, GPIO.OUT)  # obenunten
-
-            p12 = GPIO.PWM(12, 100)  # links
-            p13 = GPIO.PWM(13, 100)  # rechts
-            p16 = GPIO.PWM(16, 100)  # hochrunter
-
-            motorLeft = 0
-            motorRight = 0
-            motorUpDown = 0
-            dirMotorLeft = 1  # 0 back 1 fw ,, 6,15,26
-            dirMotorRight = 1
-            dirMotorUpDown = 1
-            writeLeft = 0
-            writeRight = 0
-            writeUpDown = 0
-
-            step = 5
-
+            
             print("Waiting for values...")
             val = conn.recv(6).decode()
             print("Values received: ", val)
