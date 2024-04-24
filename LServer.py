@@ -158,9 +158,9 @@ def main():
                 motorLeft += step
                 motorRight -= step
             elif val == '2':
-                motorUpDown -= step
-            elif val == '8':
                 motorUpDown += step
+            elif val == '8':
+                motorUpDown -= step
             elif val == 'SPACE':
                 motorUpDown = 0
                 x = int((motorLeft + motorRight) / 2)
